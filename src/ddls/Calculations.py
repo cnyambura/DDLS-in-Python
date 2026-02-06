@@ -11,6 +11,8 @@ from scipy.optimize import root
 from statistics import mode
 from statistics import StatisticsError
 from ddls.modelGrapher import grapher, compare_solvers
+# for per-solver shape plots in compare (to show solver in HTML + auto-open)
+from ddls.grapher_tools import sphere_plotter, cylinder_plotter
 
 ### SOLVER: 
 
@@ -18,8 +20,8 @@ amtg = 300 # amount of starting guesses
 digits = 6 # desired digits when solving
 
 def Solver(modelname, T, D_tr, D_rot, solver_choice='hybr', plot_type='html', save_loc=None):
-    # use modern root (hybr default) instead of fsolve; support compare of other methods + perf timing + compare plot
-    methods = ['hybr', 'lm', 'broyden1']
+    # use modern root (hybr default) instead of fsolve; support compare of hybr+lm only (broyden1 errors); perf timing + compare plot
+    methods = ['hybr', 'lm']
     if solver_choice == 'compare':
         print(f"Comparing all solvers for {modelname} model...")
         results = {}
@@ -44,6 +46,17 @@ def Solver(modelname, T, D_tr, D_rot, solver_choice='hybr', plot_type='html', sa
                 length, width = GeneralDims(modelname, rho, T, D_tr, D_rot)
                 results[method] = {'rho': rho, 'length': length, 'width': width, 'time': elapsed}
                 print(f"  {method} solver -> Aspect ratio: {rho}, Length: {round(10**9*length)} nm, Width: {round(10**9*width)} nm, Time: {elapsed:.4f}s")
+                # generate per-solver 3D shape (shows solver in title; auto-opens HTML for each)
+                fname = f'{modelname}_{rho}_{method}'
+                length_nm = length * 1e9
+                width_nm = width * 1e9
+                if modelname == 'cylinder':
+                    cylinder_plotter(fname, width_nm/2, length_nm, plot_type=plot_type, save_loc=save_loc)
+                elif modelname in ('oblate', 'prolate'):
+                    rz = min(width_nm, length_nm)/2
+                    rx = max(width_nm, length_nm)/2
+                    ry = max(width_nm, length_nm)/2
+                    sphere_plotter(fname, rx, ry, rz, plot_type=plot_type, save_loc=save_loc)
             except:
                 results[method] = {'rho': "No solution", 'length': None, 'width': None, 'time': elapsed}
                 print(f"  {method} solver -> No solution, Time: {elapsed:.4f}s")

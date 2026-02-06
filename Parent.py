@@ -27,10 +27,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 warnings.simplefilter("always")
 logging.captureWarnings(True)
-# warnings to own file too
+# warnings logged ONLY to both log files (no CLI output)
 warnings_logger = logging.getLogger("py.warnings")
 warnings_logger.addHandler(logging.FileHandler("ddls_warnings.log"))
+warnings_logger.addHandler(logging.FileHandler("ddls_errors.log"))  # also in errors log
 warnings_logger.setLevel(logging.WARNING)
+warnings_logger.propagate = False  # prevent CLI stream
 
 sample_dictionary = FileReader()
 newdata = input("STEP 1: If you would like to add a new dataset (e.g. to include your experimental nanoparticle data for aspect ratio fitting), type exactly \"yes\" and press enter. Otherwise, press any other key to proceed directly to analysis using existing data in sample_data.txt.\n")

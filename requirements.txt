@@ -1,4 +1,6 @@
 # Project dependencies for DDLS-in-Python (use with uv or pip)
+# Note: kaleido required for PNG export (plotly.write_image)
 numpy>=1.24
 scipy>=1.10
 plotly>=5.0
+kaleido>=0.2

@@ -8,6 +8,7 @@ dependencies = [
     "numpy>=1.24",
     "scipy>=1.10",
     "plotly>=5.0",
+    "kaleido>=0.2",  # required for PNG static export via plotly.write_image
 ]
 
 [tool.setuptools.packages.find]

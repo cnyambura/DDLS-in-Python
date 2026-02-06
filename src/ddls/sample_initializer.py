@@ -34,7 +34,7 @@ def initiator(dictionary_of_samples):
         model = str(input('STEP 5: Enter the model to be used for aspect ratio fitting (must be exactly one of: prolate, oblate, or cylinder): '))
         assert model in MODELS_ALLOWED, f'User entry \"{model}\" is not a valid model.\nPlease enter a valid model: {MODELS_ALLOWED}.'
 
-        solver_choice = input('STEP 5.5: Choose solver method for root optimization (default "hybr" from scipy.optimize.root; enter "hybr", "lm", "broyden1", or "compare" to run all 3 and compare solutions): ') or "hybr"
+        solver_choice = input('STEP 5.5: Choose solver method for root optimization (default "hybr" from scipy.optimize.root; enter "hybr", "lm", or "compare" to run both and compare solutions): ') or "hybr"
         plot_type = input('STEP 6: For the plotting step, enter exactly "html" to write figure to HTML (and auto-open in browser) OR "png" to save as PNG image in working dir (default) or your specified location: ')
         if plot_type == 'png':
             save_loc = input('STEP 6 continued (PNG only): Enter full path for PNG save location, or press enter to use default (current working directory): ') or os.getcwd()
@@ -56,7 +56,7 @@ def initiator(dictionary_of_samples):
         model = str(input('STEP 5: Enter the model to be used for aspect ratio fitting (must be exactly one of: prolate, oblate, or cylinder): '))
         assert model in MODELS_ALLOWED, f'User entry \"{model}\" is not a valid model.\nPlease enter a valid model: {MODELS_ALLOWED}.'
 
-        solver_choice = input('STEP 5.5: Choose solver method for root optimization (default "hybr" from scipy.optimize.root; enter "hybr", "lm", "broyden1", or "compare" to run all 3 and compare solutions): ') or "hybr"
+        solver_choice = input('STEP 5.5: Choose solver method for root optimization (default "hybr" from scipy.optimize.root; enter "hybr", "lm", or "compare" to run both and compare solutions): ') or "hybr"
         plot_type = input('STEP 6: For the plotting step, enter exactly "html" to write figure to HTML (and auto-open in browser) OR "png" to save as PNG image in working dir (default) or your specified location: ')
         if plot_type == 'png':
             save_loc = input('STEP 6 continued (PNG only): Enter full path for PNG save location, or press enter to use default (current working directory): ') or os.getcwd()

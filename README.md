@@ -23,7 +23,7 @@ Project structure (src layout):
 - Data: `sample_data.txt`; logs: `ddls_*.log`; outputs: `*.html`/`*png`, solver compare figs.
 
 ## Dependencies
-- Runtime: numpy, scipy, plotly (statistics stdlib). See `pyproject.toml`/`requirements.txt`.
+- Runtime: numpy, scipy, plotly, kaleido (for PNG export; statistics stdlib). See `pyproject.toml`/`requirements.txt`.
 - Dev/tests: pytest (via `uv sync --dev`).
 
 ## CLI Usage Steps
@@ -39,7 +39,7 @@ Project structure (src layout):
    - **STEP 4**: Loop over dataset? (`1` for batch / other for single).
      - If single: enter sample # from list.
    - **STEP 5**: Enter model (`prolate`/`oblate`/`cylinder`).
-   - **STEP 5.5**: Solver (`hybr` default / `lm` / `broyden1` / `compare` for all + timing/perf compare).
+   - **STEP 5.5**: Solver (`hybr` default / `lm` / `compare` for both + timing/perf compare; broyden1 removed due to errors).
    - **STEP 6**: Plot format (`html` for interactive+auto-open / `png`); if png enter path (default cwd).
    - On "compare" solver: CLI shows per-solver aspect/L/W + times; auto-generates bar comparison figure.
 
