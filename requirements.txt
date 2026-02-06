@@ -1,0 +1,4 @@
+# Project dependencies for DDLS-in-Python (use with uv or pip)
+numpy>=1.24
+scipy>=1.10
+plotly>=5.0

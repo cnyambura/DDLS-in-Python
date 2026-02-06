@@ -1,0 +1,25 @@
+[project]
+name = "DDLS-in-Python"
+version = "0.1.0"
+description = "Depolarized Dynamic Light Scattering data analysis in Python"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "plotly>=5.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+managed = true
+dev-dependencies = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "--tb=no"
+testpaths = ["tests"]
+
